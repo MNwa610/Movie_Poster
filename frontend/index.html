@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Афиша кинотеатров</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <header>
@@ -29,45 +30,35 @@
     <main>
         <div class="cinemas-container">
             <h2>Кинотеатры</h2>
-            <div id="cinemasList" class="cinemas-list">
-                
+            <div class="cinemas-list">
+                <article class="cinema-card">
+                    <h3>Кинотеатр Октябрь</h3>
+                    <p class="address">Адрес: Новинский бульвар, 21</p>
+                    <p class="phone">Телефон: +7 (495) 123-45-67</p>
+                    <p class="working-hours">Часы работы: 10:00 - 23:00</p>
+                    <p class="short-description">Современный кинотеатр в центре Москвы с комфортными залами</p>
+                    <p><a href="pages/cinema/cinema-oktyabr.html">Подробнее</a></p>
+                </article>
+
+                <article class="cinema-card">
+                    <h3>Кинотеатр Победа</h3>
+                    <p class="address">Адрес: Абельмановская улица, 17А</p>
+                    <p class="phone">Телефон: +7 (495) 234-56-78</p>
+                    <p class="working-hours">Часы работы: 09:00 - 24:00</p>
+                    <p class="short-description">Крупный кинотеатр с множеством залов и современным оборудованием</p>
+                    <p><a href="pages/cinema/cinema-pobeda.html">Подробнее</a></p>
+                </article>
+
+                <article class="cinema-card">
+                    <h3>Кинотеатр Формула Кино</h3>
+                    <p class="address">Адрес: Ленинградский проспект, 80</p>
+                    <p class="phone">Телефон: +7 (495) 345-67-89</p>
+                    <p class="working-hours">Часы работы: 10:00 - 02:00</p>
+                    <p class="short-description">Сеть современных кинотеатров с удобным расположением</p>
+                    <p><a href="pages/cinema/cinema-formula-kino.html">Подробнее</a></p>
+                </article>
             </div>
         </div>
     </main>
-
-    <script>
-        async function loadCinemas() {
-            try {
-                const response = await fetch('data/cinemas.json');
-                const cinemas = await response.json();
-                
-                const cinemasList = document.getElementById('cinemasList');
-                cinemasList.innerHTML = '';
-                
-                cinemas.forEach(cinema => {
-                    const card = document.createElement('div');
-                    card.className = 'cinema-card';
-                    card.onclick = () => {
-                        window.location.href = `pages/cinema-detail.html?id=${cinema.id}`;
-                    };
-                    
-                    card.innerHTML = `
-                        <h3>${cinema.name}</h3>
-                        <p class="address">Адрес: ${cinema.address}</p>
-                        <p class="phone">Телефон: ${cinema.phone}</p>
-                        <p class="working-hours">Часы работы: ${cinema.workingHours}</p>
-                        <p class="short-description">${cinema.shortDescription}</p>
-                    `;
-                    
-                    cinemasList.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Ошибка загрузки кинотеатров:', error);
-                document.getElementById('cinemasList').innerHTML = '<p>Ошибка загрузки данных</p>';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadCinemas);
-    </script>
 </body>
 </html>
